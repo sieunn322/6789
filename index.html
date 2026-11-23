@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Receipt + Fit! 旅のお金と思い出をひとつに / 여행의 돈과 추억을 한곳에">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E🧾%3C/text%3E%3C/svg%3E">
+<title>レシピート – Receipt + Fit!</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+:root{--primary:#0066cc;--focus:#0071e3;--sky:#2997ff;--white:#fff;--parch:#f5f5f7;--t1:#272729;--t2:#2a2a2c;--black:#000;--ink:#1d1d1f;--ink48:#7a7a7a;--muted:#ccc;--hair:#e0e0e0;
+--font:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Noto Sans JP","Noto Sans KR",system-ui,sans-serif}
+*{box-sizing:border-box;margin:0}
+html{scroll-padding-top:96px}
+body{font-family:var(--font);font-size:17px;line-height:1.47;letter-spacing:-.374px;color:var(--ink);background:var(--white);-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit;letter-spacing:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+#gnav{background:var(--black);height:44px;padding:env(safe-area-inset-top,0px) 22px 0;box-sizing:content-box;display:flex;align-items:center;justify-content:space-between;color:#fff;font-size:12px;letter-spacing:-.12px;position:sticky;top:0;z-index:20}
+#gnav b{font-weight:600;font-size:14px}
+.lang{background:none;border:0;color:#fff;font-size:12px;padding:8px 4px}
+#snav{position:sticky;top:calc(44px + env(safe-area-inset-top,0px));z-index:19;height:52px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 22px;background:rgba(245,245,247,.8);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(0,0,0,.08)}
+.tripbtn{background:none;border:0;font-size:19px;font-weight:600;letter-spacing:.231px;line-height:1.19;max-width:44vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0;text-align:left}
+.seg{display:flex;background:var(--hair);border-radius:9999px;padding:2px;flex:none}
+.seg button{border:0;background:transparent;border-radius:9999px;padding:5px 14px;font-size:14px;letter-spacing:-.224px}
+.seg .on{background:var(--white);font-weight:600}
+.pill{background:var(--primary);color:#fff;border:0;border-radius:9999px;padding:11px 22px;line-height:1.2;transition:transform .12s;display:inline-block;text-align:center}
+.pill.s{padding:7px 16px;font-size:14px;letter-spacing:-.224px;white-space:nowrap}
+.pill.g{background:transparent;color:var(--primary);border:1px solid var(--primary)}
+.pill:active,.opt:active,.mcard:active{transform:scale(.95)}
+.tl{background:none;border:0;color:var(--primary);padding:8px 8px;font-size:17px}
+.tl.d{color:var(--sky)}
+.tile{padding:80px 22px;text-align:center}
+.tile.l{background:var(--white)}.tile.p{background:var(--parch)}.tile.d{background:var(--t1);color:#fff}
+.in{max-width:980px;margin:0 auto}
+.hero{font-size:clamp(34px,8vw,56px);font-weight:600;line-height:1.07;letter-spacing:-.28px}
+.disp{font-size:clamp(28px,6vw,40px);font-weight:600;line-height:1.1;letter-spacing:0}
+.lead{font-size:clamp(21px,4vw,28px);line-height:1.14;letter-spacing:.196px;margin-top:12px}
+.tag{font-size:21px;font-weight:600;letter-spacing:.231px;line-height:1.19}
+.cap{font-size:14px;letter-spacing:-.224px;color:var(--ink48)}
+.d .cap{color:var(--muted)}
+.ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-top:40px}
+.card{background:var(--white);border:1px solid var(--hair);border-radius:18px;padding:24px;text-align:left}
+.card.dk{background:var(--t2);border-color:#3a3a3c;color:#fff}
+.card b{font-weight:600}
+.card .v{font-size:28px;font-weight:600;letter-spacing:0;margin-top:6px;display:block}
+.track{height:6px;background:#48484a;border-radius:9999px;margin:34px auto 12px;max-width:560px;overflow:hidden}
+.track div{height:100%;background:var(--sky)}
+.list{max-width:640px;margin:36px auto 0;text-align:left}
+.li{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--hair)}
+.li small{display:block;font-size:14px;color:var(--ink48);letter-spacing:-.224px}
+.li b{font-weight:600;white-space:nowrap}
+.fine{font-size:12px;letter-spacing:-.12px;color:var(--ink48)}
+.flow{max-width:560px;margin:0 auto;text-align:left}
+.flow .disp{text-align:center;margin-bottom:6px}
+.surf{background:var(--parch);border-radius:18px;padding:20px;display:flex;justify-content:center;align-items:center;min-height:200px;margin-top:20px}
+.surf img{max-width:100%;max-height:320px;border-radius:12px;box-shadow:rgba(0,0,0,.22) 3px 5px 30px 0}
+.opts{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.opt{background:var(--white);border:1px solid var(--hair);border-radius:9999px;padding:10px 18px;transition:transform .12s}
+.opt.sel{border:2px solid var(--focus);padding:9px 17px}
+.tcard{flex:1;display:flex;justify-content:space-between;align-items:center;gap:12px;text-align:left;background:var(--white);border:1px solid var(--hair);border-radius:18px;padding:18px 22px;margin-top:12px}
+.tcard.sel{border:2px solid var(--focus);padding:17px 21px}
+label{display:block;font-size:14px;letter-spacing:-.224px;color:var(--ink48);margin:20px 0 6px 14px}
+input,select{width:100%;height:44px;border:1px solid rgba(0,0,0,.08);outline:1px solid var(--hair);border-radius:9999px;padding:0 20px;background:var(--white);appearance:none;-webkit-appearance:none}
+textarea{width:100%;border:1px solid rgba(0,0,0,.08);outline:1px solid var(--hair);border-radius:18px;padding:12px 20px;background:var(--white);resize:vertical}
+.x{background:none;border:0;color:var(--ink48);font-size:16px;padding:8px}
+.flow .pill.f{display:block;width:100%;margin-top:24px;font-size:17px;padding:14px}
+.back{margin-bottom:10px}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;margin-top:40px;text-align:left}
+.mcard{background:var(--white);border:1px solid var(--hair);border-radius:18px;overflow:hidden;padding:0;text-align:left;display:flex;flex-direction:column;transition:transform .12s}
+.mcard img,.mcard .ph{width:100%;aspect-ratio:1/1;object-fit:cover;background:var(--parch);display:block}
+.mb{padding:12px 14px;display:flex;flex-direction:column;gap:2px}
+.mb b{font-weight:600}
+.mphoto{width:100%;max-height:480px;object-fit:cover;border-radius:18px;display:block;box-shadow:rgba(0,0,0,.22) 3px 5px 30px 0;margin-top:20px}
+.mapbox{width:256px;height:256px;max-width:100%;margin:16px auto 0;border-radius:18px;position:relative;background:var(--parch) center/cover no-repeat;overflow:hidden}
+.pin{position:absolute;width:18px;height:18px;border-radius:50%;background:var(--primary);border:3px solid #fff;transform:translate(-50%,-50%)}
+footer{background:var(--parch);padding:32px 22px calc(32px + env(safe-area-inset-bottom,0px));text-align:center}
+@media (prefers-reduced-motion:reduce){.pill,.opt,.mcard{transition:none}}
+@media (max-width:480px){.tile{padding:56px 20px}.tripbtn{max-width:36vw}}
+</style>
+</head>
+<body>
+<div id="gnav"><button class="lang" data-a="intro" aria-label="Receipt + Fit!"><b>Receipt + Fit!</b></button><button class="lang" id="lang">한국어</button></div>
+<div id="snav"></div>
+<main id="v"></main>
+<script>
+window.addEventListener('error',function(e){var b=document.getElementById('errbar');if(!b){b=document.createElement('div');b.id='errbar';b.style.cssText='position:fixed;left:0;right:0;bottom:0;z-index:99;background:#1d1d1f;color:#fff;font-size:12px;padding:8px 12px';document.body.appendChild(b)}b.textContent='Error: '+(e.message||'')});
+var REG=[['seoul','ソウル','서울'],['busan','釜山','부산'],['jeju','済州','제주'],['incheon','仁川','인천'],['gyeongju','慶州','경주'],['gangneung','江陵','강릉'],['jeonju','全州','전주'],['daegu','大邱','대구'],['yeosu','麗水','여수'],['sokcho','束草','속초']];
+var LOC={
+seoul:{'종로구':['삼청동','가회동','계동','인사동','익선동','관철동','통인동','누상동','옥인동','부암동','평창동','창신동','숭인동','혜화동','명륜동'],'중구':['명동','회현동','소공동','을지로','충무로','필동','장충동','신당동','황학동','남대문로','광희동'],'용산구':['이태원동','한남동','용산동','후암동','남영동','청파동','이촌동','한강로동','보광동'],'마포구':['연남동','망원동','합정동','상수동','서교동','동교동','성산동','상암동','공덕동','도화동','대흥동','신수동'],'서대문구':['연희동','창천동','신촌동','북아현동','홍제동','홍은동','남가좌동'],'성동구':['성수동','행당동','금호동','옥수동','송정동'],'광진구':['화양동','자양동','구의동','중곡동','군자동','능동','광장동'],'강남구':['신사동','논현동','압구정동','청담동','삼성동','역삼동','대치동','도곡동','개포동','일원동','수서동'],'서초구':['서초동','반포동','잠원동','방배동','양재동','내곡동'],'송파구':['잠실동','신천동','송파동','방이동','가락동','문정동','석촌동','풍납동','오금동'],'영등포구':['여의도동','영등포동','당산동','문래동','양평동','신길동','대림동'],'강동구':['천호동','길동','둔촌동','암사동','명일동','고덕동','강일동'],'강서구':['마곡동','화곡동','가양동','방화동','염창동','등촌동','공항동'],'동대문구':['회기동','청량리동','장안동','답십리동','이문동','제기동'],'동작구':['노량진동','흑석동','사당동','상도동','대방동'],'성북구':['성북동','안암동','정릉동','길음동','돈암동'],'관악구':['신림동','봉천동','남현동'],'구로구':['구로동','가리봉동','고척동','신도림동'],'금천구':['가산동','독산동','시흥동'],'노원구':['상계동','중계동','하계동','공릉동','월계동'],'도봉구':['도봉동','방학동','창동','쌍문동'],'강북구':['수유동','미아동','번동'],'양천구':['목동','신정동','신월동'],'은평구':['불광동','녹번동','응암동','진관동','갈현동'],'중랑구':['상봉동','면목동','망우동','신내동','중화동']},
+busan:{'해운대구':['우동','중동','좌동','송정동','재송동','반여동','반송동','석대동'],'수영구':['광안동','민락동','남천동','망미동','수영동'],'중구':['남포동','광복동','중앙동','보수동','영주동','동광동','대청동','부평동'],'영도구':['영선동','봉래동','청학동','동삼동','남항동'],'부산진구':['부전동','전포동','범천동','양정동','연지동','당감동','개금동'],'동구':['초량동','수정동','범일동','좌천동'],'남구':['대연동','용호동','문현동','감만동','우암동','용당동'],'서구':['암남동','아미동','초장동','충무동','동대신동','서대신동','토성동'],'북구':['구포동','덕천동','화명동','만덕동','금곡동'],'사하구':['다대동','하단동','신평동','괴정동','장림동','감천동'],'금정구':['장전동','부곡동','구서동','남산동','서동','청룡동'],'연제구':['연산동','거제동'],'사상구':['괘법동','감전동','주례동','모라동','덕포동'],'강서구':['명지동','대저동','강동동','녹산동','가덕도동'],'기장군':['기장읍','정관읍','일광읍','철마면','장안읍']},
+incheon:{'중구':['북성동','선린동','신포동','운서동','중산동','을왕동'],'연수구':['송도동','연수동','동춘동','옥련동','청학동'],'남동구':['구월동','논현동','만수동','간석동'],'부평구':['부평동','삼산동','십정동','청천동'],'서구':['청라동','가정동','검암동','원당동'],'계양구':['계산동','작전동','서운동'],'미추홀구':['주안동','숭의동','용현동','학익동'],'동구':['송림동','만석동','화수동','금창동'],'강화군':['강화읍','길상면','화도면','불은면'],'옹진군':['백령면','영흥면','북도면']},
+daegu:{'중구':['동성로','삼덕동','동인동','대봉동','남산동'],'수성구':['범어동','만촌동','수성동','황금동','두산동'],'달서구':['월성동','상인동','두류동','이곡동','감삼동'],'북구':['칠성동','침산동','산격동','복현동'],'동구':['신천동','신암동','효목동','방촌동','율하동'],'서구':['평리동','비산동','내당동','원대동'],'남구':['대명동','봉덕동','이천동'],'달성군':['화원읍','다사읍','현풍읍','유가읍','가창면'],'군위군':['군위읍']},
+jeju:{'제주시':['연동','노형동','이도동','삼도동','일도동','용담동','아라동','오라동','건입동','한림읍','애월읍','조천읍','구좌읍','한경면','우도면'],'서귀포시':['서귀동','중문동','대륜동','천지동','동홍동','성산읍','표선면','남원읍','안덕면','대정읍']},
+jeonju:{'완산구':['풍남동','교동','중앙동','효자동','서신동','삼천동'],'덕진구':['금암동','송천동','진북동','덕진동','우아동','혁신동']},
+gyeongju:{'-':['황남동','교동','인왕동','사정동','성건동','불국동','보문동']},
+gangneung:{'-':['교동','포남동','송정동','강문동','초당동','견소동','성남동','옥천동','주문진읍','사천면']},
+yeosu:{'-':['학동','광무동','충무동','교동','중앙동','웅천동','소호동','돌산읍','화양면']},
+sokcho:{'-':['영랑동','교동','조양동','동명동','중앙동','대포동','금호동','청호동']}};
+function sregName(m){return m.siK?regName(m.siK):(m.si||'')}
+function locStr(m){return [sregName(m),m.gu,m.dong].filter(Boolean).join(' ')}
+function locShort(m){return [m.gu,m.dong].filter(Boolean).join(' ')||sregName(m)||m.place||''}
+function lab(x){return '<label>'+x+'</label>'}
+function inp(f,val,ph){return '<input style="margin-top:8px" data-d="M" data-f="'+f+'" value="'+esc(val||'')+'" placeholder="'+ph+'">'}
+function sel(f,opts,val){return '<select data-d="M" data-f="'+f+'">'+opts.map(function(o){return '<option value="'+esc(o[0])+'"'+(o[0]==val?' selected':'')+'>'+esc(o[1])+'</option>'}).join('')+'</select>'}
+function locUI(){var P=[['',t('pickNone')]],O=[['__o',t('otherO')]];
+var siO=P.concat(REG.map(function(r){return [r[0],r[L=='ja'?1:2]]})).concat(O);
+var h=lab(t('si'))+sel('siK',siO,M.siK)+(M.siK=='__o'?inp('siT',M.siT,t('siPh')):'');
+if(M.siK=='__o')return h+lab(t('gu'))+inp('guT',M.guT,t('guPh')).replace('margin-top:8px','margin-top:0')+lab(t('dong'))+inp('dongT',M.dongT,t('dongPh')).replace('margin-top:8px','margin-top:0');
+var data=LOC[M.siK];if(!data)return h;
+var gus=Object.keys(data),noGu=gus.length==1&&gus[0]=='-';
+if(!noGu)h+=lab(t('gu'))+sel('gu',P.concat(gus.map(function(g){return [g,g]})).concat(O),M.gu)+(M.gu=='__o'?inp('guT',M.guT,t('guPh')):'');
+if(!noGu&&!M.gu)return h;
+if(!noGu&&M.gu=='__o')return h+lab(t('dong'))+inp('dongT',M.dongT,t('dongPh')).replace('margin-top:8px','margin-top:0');
+var dl=noGu?data['-']:(data[M.gu]||[]);
+return h+lab(t('dong'))+sel('dong',P.concat(dl.map(function(d){return [d,d]})).concat(O),M.dong)+(M.dong=='__o'?inp('dongT',M.dongT,t('dongPh')):'')}
+function locFin(){var o=M.siK=='__o',siK=(M.siK&&!o)?M.siK:'',si=o?(M.siT||'').trim():'';
+var gu=(o||M.gu=='__o')?(M.guT||'').trim():(M.gu||''),dong=(o||M.dong=='__o')?(M.dongT||'').trim():(M.dong||'');
+return {siK:siK,si:si,gu:gu,dong:dong}}
+function locOf(m){var s=locStr(m);return s&&m.place?s+' · '+m.place:(s||m.place||'')}
+function mapLink(m){var q=m.lat!=null?m.lat+','+m.lng:[locStr(m),m.place].filter(Boolean).join(' ');return q?'<div style="text-align:center;margin-top:10px"><a class="tl" style="text-decoration:none;display:inline-block" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query='+encodeURIComponent(q)+'">'+t('mapOpen')+'</a></div>':''}
+var T={
+ja:{trip:'旅行',total:'総支出',tl:'カード、現金、WOWPASS。ぜんぶまとめて。',remain:'残りの予算',budget:'予算',today:'今日の支出',recent:'最近の支出',empty:'まだ支出がありません。「支出を追加」から記録しましょう。',cash:'現金',wow:'WOWPASS',card:'クレジットカード',cats:['カフェ','食事','買い物','交通','その他'],over:'予算オーバー',budq:'旅行の予算（₩）',tn:'件',chg:'予算を変更',by:'支払い方法別',back:'‹ 戻る',save:'保存',date:'日付',cat:'カテゴリー',
+fx:'為替レート',fxu:'更新',fxs:'手動で設定',fxb:'取得中…',fxL:'ライブレート',fxM:'手動で設定した値',fxR:'参考値です。ライブ取得できませんでした',fxA:'最終取得',fxq:'100円は何ウォン？',fxF:'11/20（金）の公示レートを参考値として表示中（週末のため）',
+start:'旅を始める',cont:'つづきを見る',newT:'どこへ行きますか？',pickR:'行き先を選んでください（複数OK）',other:'ほかの地域',otherPh:'例：安東',create:'この旅を作る',tripsT:'旅の一覧',newTrip:'＋ 新しい旅',delq:'この旅の記録をすべて削除しますか？',needR:'行き先を1つ以上選ぶか、入力してください。',about:'Receipt + Fit! とは',
+tabH:'家計簿',tabM:'思い出',addX:'支出を追加',addM:'思い出を残す',xT:'支出を記録',what:'内容',whatPh:'例：カフェ、タクシー',amount:'金額（₩）',pay:'支払い方法',link:'思い出と紐づける',none:'なし',needA:'金額を入力してください。',
+memL:'写真・場所・使ったお金を、旅ごとにいっしょに残します。',emptyM:'まだ思い出がありません。最初の1枚を残しましょう。',memNewT:'思い出を残す',photoPick:'写真を選ぶ・撮る',photoChg:'写真を変更',photoNone:'写真はまだありません',title:'タイトル',titlePh:'例：明洞の屋台',note:'メモ',place:'場所',si:'市',gu:'区',dong:'洞',siPh:'市の名前',guPh:'区の名前',dongPh:'洞の名前',pickNone:'選択してください',otherO:'その他（入力）',placePh:'詳細・お店の名前（任意）',gps:'現在地を取得',gpsBusy:'位置情報を取得中…',gpsOk:'位置情報を保存します',gpsNo:'位置情報を取得できませんでした（ブラウザの許可を確認してください）',gpsClr:'位置を消す',gpsDen:'位置情報の許可がオフです。ブラウザの設定（iPhoneは 設定→Safari→位置情報）で許可してから、もう一度押してください',gpsHttps:'https のアドレスで開いてください（ファイルを直接開くと位置情報は使えません）',gpsTime:'位置情報を取得できませんでした。屋外でもう一度試すか、場所の名前を入力してください',photoBusy:'写真を読み込み中…',photoErr:'この写真は読み込めませんでした。JPEG/PNGの写真を選んでください（HEICは非対応のブラウザがあります）',spend:'この思い出で使ったお金',spendH:'任意。入力すると家計簿にも反映されます。',needM:'写真かタイトルを入れてください。',mapOpen:'地図で開く',spent:'使った金額',noSpend:'紐づく支出はまだありません。',delM:'この思い出を削除',delMq:'思い出を削除しますか？（支出は残ります）',mapC:'© OpenStreetMap contributors',saveNote:'記録と写真はこの端末のブラウザ内にだけ保存され、サーバーには送られません。ブラウザのデータを消すと失われます。',
+total2:'総支出',iH:'旅のお金と、<br>思い出を、ひとつに。',iL:'現金・WOWPASS・カードの支出をまとめて、写真と場所もいっしょに残せる旅の記録。',iD:'3つの支払いが、1つの数字に。',ill:'イメージ',
+iS:['記録する','残す','見返す'],iSd:['現金・WOWPASS・カードの支出を入れると、総支出と残りの予算が、円換算までひと目でわかります。','写真と、撮った場所、そのとき使ったお金をいっしょに保存します。','旅ごとの思い出を、場所と金額つきのアルバムとして見返せます。'],
+iF:['どの地域でも','円でも確認','端末の中だけに保存'],iFd:['ソウル、釜山、済州…行き先を自由に選んで、旅ごとに記録できます。','為替レートで、ウォンの金額を円に換算して表示します。','記録と写真はあなたのブラウザの中にだけ保存され、サーバーには送られません。'],iE:'さあ、旅の記録を始めましょう。'},
+ko:{trip:'여행',total:'총지출',tl:'카드, 현금, WOWPASS. 한눈에 모아서.',remain:'남은 예산',budget:'예산',today:'오늘 지출',recent:'최근 지출',empty:'아직 지출이 없어요. "지출 추가"로 기록해 보세요.',cash:'현금',wow:'WOWPASS',card:'개인 카드',cats:['카페','식사','쇼핑','교통','기타'],over:'예산 초과',budq:'여행 예산(₩)',tn:'건',chg:'예산 변경',by:'결제수단별',back:'‹ 뒤로',save:'저장',date:'날짜',cat:'카테고리',
+fx:'환율',fxu:'새로고침',fxs:'직접 설정',fxb:'가져오는 중…',fxL:'실시간 환율',fxM:'직접 설정한 값',fxR:'참고값이에요. 실시간으로 가져오지 못했어요',fxA:'마지막 갱신',fxq:'100엔은 몇 원인가요?',fxF:'11/20(금) 고시 환율 참고값 (주말이라 금요일 값)',
+start:'여행 시작하기',cont:'이어서 보기',newT:'어디로 가나요?',pickR:'가는 곳을 골라 주세요 (여러 곳 가능)',other:'다른 지역',otherPh:'예: 안동',create:'이 여행 만들기',tripsT:'여행 목록',newTrip:'+ 새 여행',delq:'이 여행의 기록을 모두 삭제할까요?',needR:'가는 곳을 하나 이상 고르거나 입력해 주세요.',about:'Receipt + Fit!이란?',
+tabH:'가계부',tabM:'추억',addX:'지출 추가',addM:'추억 남기기',xT:'지출 기록',what:'내용',whatPh:'예: 카페, 택시',amount:'금액(₩)',pay:'결제수단',link:'추억과 연결',none:'없음',needA:'금액을 입력해 주세요.',
+memL:'사진·장소·쓴 돈을 여행마다 함께 남겨요.',emptyM:'아직 추억이 없어요. 첫 사진을 남겨 보세요.',memNewT:'추억 남기기',photoPick:'사진 고르기·찍기',photoChg:'사진 바꾸기',photoNone:'아직 사진이 없어요',title:'제목',titlePh:'예: 명동 포장마차',note:'메모',place:'장소',si:'시',gu:'구',dong:'동',siPh:'시 이름',guPh:'구 이름',dongPh:'동 이름',pickNone:'선택해 주세요',otherO:'기타 (직접 입력)',placePh:'상세·가게 이름 (선택)',gps:'현재 위치 가져오기',gpsBusy:'위치 가져오는 중…',gpsOk:'위치가 저장돼요',gpsNo:'위치를 가져오지 못했어요 (브라우저의 허용을 확인해 주세요)',gpsClr:'위치 지우기',gpsDen:'위치 권한이 꺼져 있어요. 브라우저 설정(아이폰은 설정→Safari→위치)에서 허용한 뒤 다시 눌러 주세요',gpsHttps:'https 주소로 열어 주세요 (파일을 바로 열면 위치를 쓸 수 없어요)',gpsTime:'위치를 가져오지 못했어요. 야외에서 다시 시도하거나 장소 이름을 입력해 주세요',photoBusy:'사진 불러오는 중…',photoErr:'이 사진을 읽지 못했어요. JPEG/PNG 사진을 골라 주세요 (HEIC는 지원하지 않는 브라우저가 있어요)',spend:'이 추억에서 쓴 돈',spendH:'선택 사항. 입력하면 가계부에도 반영돼요.',needM:'사진이나 제목을 넣어 주세요.',mapOpen:'지도에서 열기',spent:'쓴 돈',noSpend:'연결된 지출이 아직 없어요.',delM:'이 추억 삭제',delMq:'추억을 삭제할까요? (지출은 남아요)',mapC:'© OpenStreetMap contributors',saveNote:'기록과 사진은 이 기기의 브라우저 안에만 저장되고 서버로 보내지지 않아요. 브라우저 데이터를 지우면 사라져요.',
+total2:'총지출',iH:'여행의 돈과<br>추억을 한곳에.',iL:'현금·WOWPASS·카드 지출을 모으고, 사진과 장소도 함께 남기는 여행 기록.',iD:'세 가지 결제가, 하나의 숫자로.',ill:'이미지',
+iS:['기록하기','남기기','돌아보기'],iSd:['현금·WOWPASS·카드 지출을 넣으면 총지출과 남은 예산을 엔화 환산까지 한눈에 봐요.','사진과 찍은 장소, 그때 쓴 돈을 함께 저장해요.','여행마다 추억을 장소와 금액이 붙은 앨범으로 다시 봐요.'],
+iF:['어느 지역이든','엔화로도 확인','기기 안에만 저장'],iFd:['서울, 부산, 제주… 가는 곳을 자유롭게 골라 여행마다 기록해요.','환율로 원화 금액을 엔화로 바꿔 보여줘요.','기록과 사진은 내 브라우저 안에만 저장되고 서버로 보내지지 않아요.'],iE:'자, 여행 기록을 시작해 볼까요?'}};
+var L='ja',S,scr='intro',VM=null,E,M,NT={regions:[],custom:'',budget:300000,err:false},TODAY=new Date().toISOString().slice(0,10);
+try{S=JSON.parse(localStorage.getItem('rf2')||'null')}catch(e){}
+if(!S||!Array.isArray(S.trips))S={trips:[],cur:null};
+S.trips.forEach(function(x){x.mem=x.mem||[]});
+if(S.trips.length)scr='home';
+function newE(m){return{date:TODAY,store:'',cat:1,amount:0,m:'cash',mem:m||'',err:false}}
+function newM(){return{date:TODAY,title:'',note:'',siK:'',siT:'',gu:'',guT:'',dong:'',dongT:'',place:'',photo:'',thumb:'',amount:0,m:'cash',what:'',err:false}}
+E=newE();M=newM();
+function sv(){try{localStorage.setItem('rf2',JSON.stringify(S))}catch(e){alert('保存できません / 저장 공간이 부족해요')}}
+var R={r:8.3373,live:false,at:Date.UTC(2026,10,20,6,30),src:'ref',busy:false};
+try{var rr=JSON.parse(localStorage.getItem('rfr')||'null');if(rr&&rr.r>0)R=Object.assign(R,rr,{busy:false,live:false})}catch(e){}
+function saveR(){try{localStorage.setItem('rfr',JSON.stringify({r:R.r,at:R.at,src:R.src}))}catch(e){}}
+function t(k){return T[L][k]}
+function w(n){return '₩'+Number(n||0).toLocaleString('en-US')}
+function jy(n){return '¥'+Math.round(n/R.r).toLocaleString('en-US')}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function cur(){return S.trips.filter(function(x){return x.id==S.cur})[0]||S.trips[0]}
+function regName(k){var r=REG.filter(function(x){return x[0]==k})[0];return r?r[L=='ja'?1:2]:k}
+function tripName(tr){var p=tr.regions.map(regName);if(tr.custom)p.push(tr.custom);return (p.join(' · ')||'')+' '+t('trip')}
+function tsum(tr,f){return tr.tx.filter(f||function(){return 1}).reduce(function(a,x){return a+x.total},0)}
+function sum(f){return tsum(cur(),f)}
+/* ---- 写真の保存 (IndexedDB) ---- */
+var dbp=null;
+function dbOpen(){return dbp||(dbp=new Promise(function(res){try{var r=indexedDB.open('rfphotos',1);r.onupgradeneeded=function(){r.result.createObjectStore('p')};r.onsuccess=function(){res(r.result)};r.onerror=function(){res(null)}}catch(e){res(null)}}))}
+function dbPut(k,val){return dbOpen().then(function(d){return new Promise(function(res){if(!d)return res(false);var x=d.transaction('p','readwrite');x.objectStore('p').put(val,k);x.oncomplete=function(){res(true)};x.onerror=function(){res(false)}})})}
+function dbGet(k){return dbOpen().then(function(d){return new Promise(function(res){if(!d)return res(null);var q=d.transaction('p','readonly').objectStore('p').get(k);q.onsuccess=function(){res(q.result||null)};q.onerror=function(){res(null)}})})}
+function dbDel(k){return dbOpen().then(function(d){if(d)d.transaction('p','readwrite').objectStore('p').delete(k)})}
+function imgScale(f,max,q){return new Promise(function(res){
+function draw(src,w,h){try{var k=Math.min(1,max/Math.max(w,h)),c=document.createElement('canvas');c.width=Math.max(1,Math.round(w*k));c.height=Math.max(1,Math.round(h*k));c.getContext('2d').drawImage(src,0,0,c.width,c.height);var d=c.toDataURL('image/jpeg',q);return d.length>100?d:''}catch(e){return ''}}
+var fr=new FileReader();fr.onerror=function(){res('')};
+fr.onload=function(){var im=new Image();
+im.onload=function(){res(draw(im,im.width,im.height))};
+im.onerror=function(){if(!window.createImageBitmap)return res('');createImageBitmap(f).then(function(bm){res(draw(bm,bm.width,bm.height))}).catch(function(){res('')})};
+im.src=fr.result};fr.readAsDataURL(f)})}
+/* ---- 為替 ---- */
+function fxT(){return R.at?new Date(R.at).toLocaleString(L=='ja'?'ja-JP':'ko-KR',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}):''}
+function fxStatus(){if(R.busy)return t('fxb');if(R.live)return t('fxL')+' · '+fxT();if(R.src=='manual')return t('fxM')+' · '+fxT();if(R.src=='ref')return t('fxF');if(R.at)return t('fxA')+' '+fxT();return t('fxR')}
+function fxTile(){return '<section class="tile l"><div class="in"><p class="tag">'+t('fx')+'</p><h2 class="disp" style="margin-top:8px">¥100 = ₩'+(R.r*100).toFixed(1)+'</h2><p class="cap" style="margin-top:6px">'+fxStatus()+'</p><div class="ctas" style="margin-top:20px"><button class="pill s" data-a="fx">'+t('fxu')+'</button><button class="pill s g" data-a="fxset">'+t('fxs')+'</button></div><div class="flow" style="margin-top:28px"><label>¥ JPY</label><input id="cj" type="number" inputmode="numeric" value="1000"><label>₩ KRW</label><input id="ck" type="number" inputmode="numeric" value="'+Math.round(1000*R.r)+'"></div></div></section>'}
+function fetchRate(){R.busy=true;if(scr=='home')render();var c=new AbortController(),tm=setTimeout(function(){c.abort()},6000);
+try{fetch('https://open.er-api.com/v6/latest/JPY',{signal:c.signal}).then(function(r){return r.json()}).then(function(j){var k=j&&j.rates&&j.rates.KRW;if(!(k>0))throw 0;R={r:k,live:true,at:Date.now(),src:'api',busy:false};saveR()}).catch(function(){R.busy=false;R.live=false}).then(function(){clearTimeout(tm);if(scr=='home')render()})}catch(e){R.busy=false;if(scr=='home')render()}}
+/* ---- 描画 ---- */
+var v=document.getElementById('v'),sn=document.getElementById('snav');
+function sync(){document.querySelectorAll('[data-f]').forEach(function(el){var o=el.dataset.d=='E'?E:M;o[el.dataset.f]=el.type=='number'?(+el.value||0):el.value})}
+function render(ns){
+if(!ns)sync();
+document.documentElement.lang=L;document.getElementById('lang').textContent=L=='ja'?'한국어':'日本語';
+if(['home','mem','memnew','memview','exp'].indexOf(scr)>-1&&!cur())scr='intro';
+sn.style.display=scr=='intro'?'none':'flex';
+var seg=(scr=='home'||scr=='mem')?'<span class="seg"><button data-a="tabh" class="'+(scr=='home'?'on':'')+'">'+t('tabH')+'</button><button data-a="tabm" class="'+(scr=='mem'?'on':'')+'">'+t('tabM')+'</button></span>':'';
+sn.innerHTML=(cur()?'<button class="tripbtn" data-a="trips">'+esc(tripName(cur()))+' ▾</button>':'<span></span>')+seg;
+({intro:intro,new:newTrip,trips:trips,home:home,mem:mem,memnew:memNew,memview:memView,exp:expForm})[scr]();
+window.scrollTo(0,0)}
+function countUp(){var el=document.getElementById('cu');if(!el)return;var to=150000;
+if(window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches){el.textContent=w(to);return}
+var t0=null;function f(ts){if(!t0)t0=ts;var p=Math.min(1,(ts-t0)/1400),e=1-Math.pow(1-p,3);el.textContent=w(Math.round(to*e/1000)*1000);if(p<1&&document.getElementById('cu')===el)requestAnimationFrame(f)}requestAnimationFrame(f)}
+function intro(){var has=S.trips.length>0;
+var steps=t('iS').map(function(s,i){return '<div class="card"><b style="font-size:21px">'+(i+1)+'　'+s+'</b><p style="margin-top:8px">'+t('iSd')[i]+'</p></div>'}).join('');
+var feats=t('iF').map(function(s,i){return '<div class="card"><b style="font-size:21px">'+s+'</b><p style="margin-top:8px">'+t('iFd')[i]+'</p></div>'}).join('');
+v.innerHTML='<section class="tile l"><div class="in"><h1 class="hero" style="font-size:clamp(40px,10vw,80px)">'+t('iH')+'</h1><p class="lead" style="max-width:680px;margin:20px auto 0">'+t('iL')+'</p><div class="ctas"><button class="pill" data-a="start">'+t('start')+'</button>'+(has?'<button class="pill g" data-a="cont">'+t('cont')+'</button>':'')+'</div></div></section>'
++'<section class="tile d"><div class="in"><h2 class="disp">'+t('iD')+'</h2><div class="grid">'+[['cash',30000],['wow',70000],['card',50000]].map(function(x){return '<div class="card dk"><b>'+t(x[0])+'</b><span class="v">'+w(x[1])+'</span></div>'}).join('')+'</div><p class="lead" style="margin-top:32px" aria-hidden="true">↓</p><p class="hero" id="cu" style="margin-top:8px">'+w(150000)+'</p><p class="cap" style="margin-top:8px">'+t('total')+' · '+t('ill')+'</p></div></section>'
++'<section class="tile p"><div class="in"><div class="grid" style="margin-top:0">'+steps+'</div></div></section>'
++'<section class="tile l"><div class="in"><div class="grid" style="margin-top:0">'+feats+'</div></div></section>'
++'<section class="tile d"><div class="in"><h2 class="disp">'+t('iE')+'</h2><div class="ctas"><button class="pill" data-a="start">'+t('start')+'</button></div></div></section>';
+countUp()}
+function newTrip(){
+var opts=REG.map(function(r){return '<button class="opt'+(NT.regions.indexOf(r[0])>-1?' sel':'')+'" data-a="tr" data-k="'+r[0]+'">'+r[L=='ja'?1:2]+'</button>'}).join('');
+v.innerHTML='<section class="tile l"><div class="flow"><button class="tl back" data-a="'+(S.trips.length?'trips':'intro')+'">'+t('back')+'</button><h1 class="disp">'+t('newT')+'</h1><p class="cap" style="text-align:center;margin-top:6px">'+t('pickR')+'</p><div class="opts" style="margin-top:24px">'+opts+'</div><label>'+t('other')+'</label><input id="ntc" value="'+esc(NT.custom)+'" placeholder="'+t('otherPh')+'"><label>'+t('budget')+' (₩)</label><input id="ntb" type="number" inputmode="numeric" value="'+NT.budget+'">'+(NT.err?'<p class="cap" style="margin:14px 14px 0">'+t('needR')+'</p>':'')+'<button class="pill f" data-a="mk">'+t('create')+'</button></div></section>'}
+function readNT(){var c=document.getElementById('ntc'),b=document.getElementById('ntb');if(c)NT.custom=c.value;if(b&&+b.value>0)NT.budget=+b.value}
+function trips(){
+v.innerHTML='<section class="tile l"><div class="flow"><button class="tl back" data-a="'+(cur()?'home':'intro')+'">'+t('back')+'</button><h1 class="disp">'+t('tripsT')+'</h1>'
++S.trips.map(function(tr){return '<div style="display:flex;gap:4px;align-items:center"><button class="tcard'+(tr.id==S.cur?' sel':'')+'" data-a="pick" data-id="'+tr.id+'"><span>'+esc(tripName(tr))+'<br><span class="cap">'+tr.tx.length+t('tn')+' · '+tr.mem.length+' '+t('tabM')+'</span></span><b style="font-weight:600">'+w(tsum(tr))+'</b></button><button class="x" data-a="tdel" data-id="'+tr.id+'" aria-label="delete">✕</button></div>'}).join('')
++'<button class="pill f" data-a="start">'+t('newTrip')+'</button></div></section>'}
+function home(){
+var tr=cur(),tot=sum(),rem=tr.budget-tot,pct=Math.min(100,Math.max(0,tot/tr.budget*100)),td=sum(function(x){return x.date==TODAY});
+var cards=['cash','wow','card'].map(function(m){return '<div class="card"><b>'+t(m)+'</b><span class="v">'+w(sum(function(x){return x.m==m}))+'</span></div>'}).join('')+'<div class="card"><b>'+t('today')+'</b><span class="v">'+w(td)+'</span></div>';
+var list=tr.tx.slice().sort(function(a,b){return a.date<b.date?1:(a.date>b.date?-1:b.id-a.id)}).map(function(x){var mm=x.mem?tr.mem.filter(function(q){return q.id==x.mem})[0]:null;return '<div class="li"><span>'+esc(x.store)+'<small>'+x.date+' · '+t('cats')[x.cat]+' · '+t(x.m)+(mm?' · ◐ '+esc(mm.title||locOf(mm)||mm.date):'')+'</small></span><span style="display:flex;align-items:center;gap:2px"><b>'+w(x.total)+'</b><button class="x" data-a="xdel" data-id="'+x.id+'" aria-label="delete">✕</button></span></div>'}).join('')||'<p class="cap" style="text-align:center;padding:20px 0">'+t('empty')+'</p>';
+v.innerHTML='<section class="tile l"><div class="in"><p class="tag">'+t('total')+'</p><h1 class="hero" style="margin-top:8px">'+w(tot)+'</h1><p class="cap" style="margin-top:8px;font-size:17px">≈ '+jy(tot)+'</p><p class="lead">'+t('tl')+'</p><div class="ctas"><button class="pill" data-a="addx">'+t('addX')+'</button><button class="pill g" data-a="memnew">'+t('addM')+'</button></div></div></section>'
++'<section class="tile d"><div class="in"><p class="tag">'+t('remain')+(rem<0?' · '+t('over'):'')+'</p><h2 class="disp" style="font-size:clamp(34px,8vw,56px);margin-top:8px">'+w(rem)+'</h2><p class="cap" style="margin-top:6px;font-size:17px">≈ '+jy(rem)+'</p><div class="track"><div style="width:'+pct+'%"></div></div><p class="cap">'+t('budget')+' '+w(tr.budget)+'</p><button class="tl d" data-a="bud">'+t('chg')+'</button></div></section>'
++fxTile()
++'<section class="tile p"><div class="in"><h2 class="disp">'+t('by')+'</h2><div class="grid">'+cards+'</div></div></section>'
++'<section class="tile l"><div class="in"><h2 class="disp">'+t('recent')+'</h2><p class="cap" style="margin-top:6px">'+tr.tx.length+t('tn')+'</p><div class="list">'+list+'</div></div></section>'
++'<footer><p class="fine" style="margin-bottom:6px">'+t('saveNote')+'</p><button class="tl" data-a="intro">'+t('about')+'</button></footer>'}
+function payOpts(cur_){return '<div class="opts" style="margin-top:6px">'+['cash','wow','card'].map(function(m){return '<button class="opt'+(cur_==m?' sel':'')+'" data-a="m" data-m="'+m+'">'+t(m)+'</button>'}).join('')+'</div>'}
+function expForm(){var tr=cur();
+v.innerHTML='<section class="tile l"><div class="flow"><button class="tl back" data-a="'+(E.mem?'mview':'tabh')+'" data-id="'+E.mem+'">'+t('back')+'</button><h1 class="disp">'+t('xT')+'</h1>'
++'<label>'+t('date')+'</label><input type="date" data-d="E" data-f="date" value="'+E.date+'"><label>'+t('what')+'</label><input data-d="E" data-f="store" value="'+esc(E.store)+'" placeholder="'+t('whatPh')+'"><label>'+t('cat')+'</label><select data-d="E" data-f="cat">'+t('cats').map(function(c,i){return '<option value="'+i+'"'+(i==E.cat?' selected':'')+'>'+c+'</option>'}).join('')+'</select><label>'+t('amount')+'</label><input type="number" inputmode="numeric" data-d="E" data-f="amount" value="'+(E.amount||'')+'" placeholder="0"><label>'+t('pay')+'</label>'+payOpts(E.m)
++(tr.mem.length?'<label>'+t('link')+'</label><select data-d="E" data-f="mem"><option value="">'+t('none')+'</option>'+tr.mem.map(function(m){return '<option value="'+m.id+'"'+(m.id==E.mem?' selected':'')+'>'+esc(m.title||locOf(m)||m.date)+' ('+m.date+')</option>'}).join('')+'</select>':'')
++(E.err?'<p class="cap" style="margin:14px 14px 0">'+t('needA')+'</p>':'')+'<button class="pill f" data-a="xsave">'+t('save')+'</button></div></section>'}
+function mem(){var tr=cur(),list=tr.mem.slice().sort(function(a,b){return a.date<b.date?1:(a.date>b.date?-1:b.id-a.id)});
+var cards=list.map(function(m){var sp=tsum(tr,function(x){return x.mem==m.id});return '<button class="mcard" data-a="mview" data-id="'+m.id+'">'+(m.thumb?'<img src="'+m.thumb+'" alt="">':'<div class="ph"></div>')+'<div class="mb"><b>'+esc(m.title||locOf(m)||m.date)+'</b><span class="cap">'+m.date+(locOf(m)?' · '+esc(locShort(m)):'')+'</span>'+(sp?'<span class="cap" style="color:var(--ink)">'+w(sp)+' · ≈ '+jy(sp)+'</span>':'')+'</div></button>'}).join('');
+v.innerHTML='<section class="tile l"><div class="in"><h1 class="hero">'+t('tabM')+'</h1><p class="lead">'+t('memL')+'</p><div class="ctas"><button class="pill" data-a="memnew">'+t('addM')+'</button></div><div class="mgrid">'+(cards||'<p class="cap" style="grid-column:1/-1;text-align:center">'+t('emptyM')+'</p>')+'</div></div></section><footer><p class="fine">'+t('saveNote')+'</p></footer>'}
+function memNew(){
+v.innerHTML='<section class="tile l"><div class="flow"><button class="tl back" data-a="tabm">'+t('back')+'</button><h1 class="disp">'+t('memNewT')+'</h1>'
++'<div class="surf">'+(M.photo?'<img src="'+M.photo+'" alt="">':'<span class="cap">'+t('photoNone')+'</span>')+'</div><input type="file" id="pf" accept="image/*" hidden><label class="pill g f" for="pf" style="cursor:pointer;margin-top:14px;color:var(--primary);font-size:17px;letter-spacing:-.374px">'+(M.photo?t('photoChg'):t('photoPick'))+'</label><p class="cap" id="pst" style="text-align:center;margin-top:8px"></p>'
++'<label>'+t('title')+'</label><input data-d="M" data-f="title" value="'+esc(M.title)+'" placeholder="'+t('titlePh')+'"><label>'+t('date')+'</label><input type="date" data-d="M" data-f="date" value="'+M.date+'"><label>'+t('note')+'</label><textarea rows="3" data-d="M" data-f="note">'+esc(M.note)+'</textarea>'
++locUI()+'<input style="margin-top:12px" data-d="M" data-f="place" value="'+esc(M.place)+'" placeholder="'+t('placePh')+'">'
++'<label>'+t('spend')+'</label><input type="number" inputmode="numeric" data-d="M" data-f="amount" value="'+(M.amount||'')+'" placeholder="₩ 0">'+payOpts(M.m)+'<input style="margin-top:12px" data-d="M" data-f="what" value="'+esc(M.what)+'" placeholder="'+t('what')+'"><p class="cap" style="margin:8px 14px 0">'+t('spendH')+'</p>'
++(M.err?'<p class="cap" style="margin:14px 14px 0">'+t('needM')+'</p>':'')+'<button class="pill f" data-a="msave">'+t('save')+'</button></div></section>';
+document.getElementById('pf').onchange=function(e){var f=e.target.files[0];if(!f)return;var ps=document.getElementById('pst');if(ps)ps.textContent=t('photoBusy');imgScale(f,1280,.8).then(function(big){if(!big){var p2=document.getElementById('pst');if(p2)p2.textContent=t('photoErr');return}return imgScale(f,360,.7).then(function(th){M.photo=big;M.thumb=th||big;render()})})};}
+function memView(){var tr=cur(),m=tr.mem.filter(function(x){return x.id==VM})[0];if(!m){scr='mem';return mem()}
+var ex=tr.tx.filter(function(x){return x.mem==m.id}),sp=ex.reduce(function(a,x){return a+x.total},0);
+v.innerHTML='<section class="tile l"><div class="flow"><button class="tl back" data-a="tabm">'+t('back')+'</button>'+(m.thumb?'<img class="mphoto" id="mp" src="'+m.thumb+'" alt="">':'')
++'<h1 class="disp" style="margin-top:22px">'+esc(m.title||locOf(m)||m.date)+'</h1><p class="cap" style="text-align:center;margin-top:4px">'+m.date+(locOf(m)?' · '+esc(locOf(m)):'')+'</p>'+(m.note?'<p style="margin-top:16px;white-space:pre-wrap">'+esc(m.note)+'</p>':'')
++mapLink(m)
++'<div class="card" style="margin-top:28px"><b>'+t('spent')+'</b><span class="v">'+w(sp)+'</span><span class="cap">≈ '+jy(sp)+'</span>'+(ex.length?ex.map(function(x){return '<div class="li"><span>'+esc(x.store)+'<small>'+t('cats')[x.cat]+' · '+t(x.m)+'</small></span><span style="display:flex;align-items:center;gap:2px"><b>'+w(x.total)+'</b><button class="x" data-a="xdel" data-id="'+x.id+'" aria-label="delete">✕</button></span></div>'}).join(''):'<p class="cap" style="margin-top:8px">'+t('noSpend')+'</p>')+'</div>'
++'<button class="pill f" data-a="addxm">'+t('addX')+'</button><div style="text-align:center;margin-top:16px"><button class="tl" style="color:var(--ink48)" data-a="mdel">'+t('delM')+'</button></div></div></section>';
+dbGet('p'+m.id).then(function(u){var el=document.getElementById('mp');if(u&&el)el.src=u})}
+/* ---- イベント ---- */
+document.addEventListener('input',function(e){var id=e.target.id,o;if(id=='cj'){o=document.getElementById('ck');o.value=e.target.value?Math.round(e.target.value*R.r):''}else if(id=='ck'){o=document.getElementById('cj');o.value=e.target.value?Math.round(e.target.value/R.r):''}});
+document.addEventListener('change',function(e){var f=e.target.dataset&&e.target.dataset.f;if(!f||scr!='memnew')return;sync();if(f=='siK'){M.gu='';M.guT='';M.dong='';M.dongT=''}else if(f=='gu'){M.dong='';M.dongT=''}else if(f!='dong')return;var y=window.scrollY;render(true);window.scrollTo(0,y)});
+document.addEventListener('click',function(e){var b=e.target.closest('[data-a]');if(!b)return;var a=b.dataset.a;
+sync();if(scr=='new')readNT();
+if(a=='intro'){scr='intro'}
+else if(a=='cont'||a=='tabh'){scr='home'}
+else if(a=='tabm'){scr='mem'}
+else if(a=='start'){NT={regions:[],custom:'',budget:300000,err:false};scr='new'}
+else if(a=='tr'){var k=b.dataset.k,ix=NT.regions.indexOf(k);if(ix>-1)NT.regions.splice(ix,1);else NT.regions.push(k);NT.err=false}
+else if(a=='mk'){if(!NT.regions.length&&!NT.custom.trim()){NT.err=true}else{var id=Date.now();S.trips.push({id:id,regions:NT.regions.slice(),custom:NT.custom.trim(),budget:NT.budget>0?NT.budget:300000,tx:[],mem:[]});S.cur=id;sv();scr='home'}}
+else if(a=='trips'){scr='trips'}
+else if(a=='pick'){S.cur=+b.dataset.id;sv();scr='home'}
+else if(a=='tdel'){var did=+b.dataset.id;if(!confirm(t('delq')))return;S.trips.filter(function(x){return x.id==did}).forEach(function(x){x.mem.forEach(function(m){dbDel('p'+m.id)})});S.trips=S.trips.filter(function(x){return x.id!=did});if(S.cur==did)S.cur=S.trips.length?S.trips[0].id:null;sv();if(!S.trips.length)scr='intro'}
+else if(a=='addx'){E=newE();scr='exp'}
+else if(a=='addxm'){E=newE(String(VM));scr='exp'}
+else if(a=='m'){(scr=='exp'?E:M).m=b.dataset.m}
+else if(a=='xsave'){if(!(+E.amount>0)){E.err=true}else{cur().tx.push({id:Date.now(),date:E.date||TODAY,store:(E.store||'').trim()||t('cats')[+E.cat],cat:+E.cat,total:Math.round(+E.amount),m:E.m,mem:E.mem?+E.mem:null});sv();if(E.mem){VM=+E.mem;scr='memview'}else scr='home'}}
+else if(a=='xdel'){var xid=+b.dataset.id;var tr0=cur();tr0.tx=tr0.tx.filter(function(x){return x.id!=xid});sv()}
+else if(a=='memnew'){M=newM();var t1=cur();M.siK=t1.regions[0]||(t1.custom?'__o':'');M.siT=t1.regions[0]?'':(t1.custom||'');scr='memnew'}
+else if(a=='msave'){if(!M.photo&&!(M.title||'').trim()){M.err=true}else{var mid=Date.now(),tr=cur(),LF=locFin();tr.mem.push({id:mid,date:M.date||TODAY,title:(M.title||'').trim(),note:(M.note||'').trim(),siK:LF.siK,si:LF.si,gu:LF.gu,dong:LF.dong,place:(M.place||'').trim(),thumb:M.thumb});if(M.photo)dbPut('p'+mid,M.photo);if(+M.amount>0)tr.tx.push({id:mid+1,date:M.date||TODAY,store:(M.what||'').trim()||(M.title||'').trim()||t('cats')[4],cat:4,total:Math.round(+M.amount),m:M.m,mem:mid});sv();VM=mid;scr='memview'}}
+else if(a=='mview'){VM=+b.dataset.id;scr='memview'}
+else if(a=='mdel'){if(!confirm(t('delMq')))return;var t2=cur();t2.mem=t2.mem.filter(function(x){return x.id!=VM});t2.tx.forEach(function(x){if(x.mem==VM)x.mem=null});dbDel('p'+VM);sv();scr='mem'}
+else if(a=='bud'){var n=prompt(t('budq'),cur().budget);if(n&&+n>0){cur().budget=+n;sv()}}
+else if(a=='fx'){fetchRate();return}
+else if(a=='fxset'){var n2=prompt(t('fxq'),(R.r*100).toFixed(1));if(n2&&+n2>0){R={r:+n2/100,live:false,at:Date.now(),src:'manual',busy:false};saveR()}}
+else return;
+var y0=window.scrollY;render();if(a=='tr'||a=='m')window.scrollTo(0,y0)});
+document.getElementById('lang').onclick=function(){readNT();L=L=='ja'?'ko':'ja';render()};
+render();fetchRate();
+</script>
+</body>
+</html>
